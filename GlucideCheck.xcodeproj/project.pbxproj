@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E54DA792BE542E200AAD617 /* EditName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54DA782BE542E200AAD617 /* EditName.swift */; };
+		2ED782632BE52DCD00D371AF /* GlucideCheckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782622BE52DCD00D371AF /* GlucideCheckApp.swift */; };
+		2ED782652BE52DCD00D371AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782642BE52DCD00D371AF /* ContentView.swift */; };
+		2ED782672BE52DCF00D371AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED782662BE52DCF00D371AF /* Assets.xcassets */; };
+		2ED7826A2BE52DCF00D371AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED782692BE52DCF00D371AF /* Preview Assets.xcassets */; };
+		2ED782742BE5396800D371AF /* DosageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782732BE5396800D371AF /* DosageView.swift */; };
+		2ED782762BE5397E00D371AF /* CalculView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782752BE5397E00D371AF /* CalculView.swift */; };
+		2ED782782BE5398800D371AF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782772BE5398800D371AF /* SettingView.swift */; };
+		2EFF3E112BE638E500F0BF85 /* EditBirthDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E102BE638E500F0BF85 /* EditBirthDate.swift */; };
+		2EFF3E132BE6394000F0BF85 /* EditWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E122BE6394000F0BF85 /* EditWeight.swift */; };
+		2EFF3E152BE6395000F0BF85 /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E142BE6395000F0BF85 /* EditGender.swift */; };
+		2EFF3E172BE6395D00F0BF85 /* EditTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E162BE6395D00F0BF85 /* EditTarget.swift */; };
+		2EFF3E192BE6397100F0BF85 /* EditInsulinInfluence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E182BE6397100F0BF85 /* EditInsulinInfluence.swift */; };
+		2EFF3E1B2BE6398400F0BF85 /* EditSugarInfluence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E1A2BE6398400F0BF85 /* EditSugarInfluence.swift */; };
+		2EFF3E1D2BE6399500F0BF85 /* EditDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E1C2BE6399500F0BF85 /* EditDarkMode.swift */; };
+		2EFF3E1F2BE639AB00F0BF85 /* EditLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF3E1E2BE639AB00F0BF85 /* EditLanguage.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2E54DA782BE542E200AAD617 /* EditName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName.swift; sourceTree = "<group>"; };
+		2ED7825F2BE52DCD00D371AF /* GlucideCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucideCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ED782622BE52DCD00D371AF /* GlucideCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucideCheckApp.swift; sourceTree = "<group>"; };
+		2ED782642BE52DCD00D371AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2ED782662BE52DCF00D371AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2ED782692BE52DCF00D371AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2ED782732BE5396800D371AF /* DosageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageView.swift; sourceTree = "<group>"; };
+		2ED782752BE5397E00D371AF /* CalculView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculView.swift; sourceTree = "<group>"; };
+		2ED782772BE5398800D371AF /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		2EFF3E102BE638E500F0BF85 /* EditBirthDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBirthDate.swift; sourceTree = "<group>"; };
+		2EFF3E122BE6394000F0BF85 /* EditWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeight.swift; sourceTree = "<group>"; };
+		2EFF3E142BE6395000F0BF85 /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		2EFF3E162BE6395D00F0BF85 /* EditTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTarget.swift; sourceTree = "<group>"; };
+		2EFF3E182BE6397100F0BF85 /* EditInsulinInfluence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinInfluence.swift; sourceTree = "<group>"; };
+		2EFF3E1A2BE6398400F0BF85 /* EditSugarInfluence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSugarInfluence.swift; sourceTree = "<group>"; };
+		2EFF3E1C2BE6399500F0BF85 /* EditDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDarkMode.swift; sourceTree = "<group>"; };
+		2EFF3E1E2BE639AB00F0BF85 /* EditLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLanguage.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2ED7825C2BE52DCD00D371AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E54DA772BE542D200AAD617 /* SettingViews */ = {
+			isa = PBXGroup;
+			children = (
+				2E54DA782BE542E200AAD617 /* EditName.swift */,
+				2EFF3E102BE638E500F0BF85 /* EditBirthDate.swift */,
+				2EFF3E122BE6394000F0BF85 /* EditWeight.swift */,
+				2EFF3E142BE6395000F0BF85 /* EditGender.swift */,
+				2EFF3E162BE6395D00F0BF85 /* EditTarget.swift */,
+				2EFF3E182BE6397100F0BF85 /* EditInsulinInfluence.swift */,
+				2EFF3E1A2BE6398400F0BF85 /* EditSugarInfluence.swift */,
+				2EFF3E1C2BE6399500F0BF85 /* EditDarkMode.swift */,
+				2EFF3E1E2BE639AB00F0BF85 /* EditLanguage.swift */,
+			);
+			path = SettingViews;
+			sourceTree = "<group>";
+		};
+		2ED782562BE52DCD00D371AF = {
+			isa = PBXGroup;
+			children = (
+				2ED782612BE52DCD00D371AF /* GlucideCheck */,
+				2ED782602BE52DCD00D371AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2ED782602BE52DCD00D371AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ED7825F2BE52DCD00D371AF /* GlucideCheck.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ED782612BE52DCD00D371AF /* GlucideCheck */ = {
+			isa = PBXGroup;
+			children = (
+				2ED782722BE5393A00D371AF /* Views */,
+				2ED782622BE52DCD00D371AF /* GlucideCheckApp.swift */,
+				2ED782642BE52DCD00D371AF /* ContentView.swift */,
+				2ED782662BE52DCF00D371AF /* Assets.xcassets */,
+				2ED782682BE52DCF00D371AF /* Preview Content */,
+			);
+			path = GlucideCheck;
+			sourceTree = "<group>";
+		};
+		2ED782682BE52DCF00D371AF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2ED782692BE52DCF00D371AF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2ED782722BE5393A00D371AF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E54DA772BE542D200AAD617 /* SettingViews */,
+				2ED782732BE5396800D371AF /* DosageView.swift */,
+				2ED782752BE5397E00D371AF /* CalculView.swift */,
+				2ED782772BE5398800D371AF /* SettingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2ED7825E2BE52DCD00D371AF /* GlucideCheck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2ED7826D2BE52DCF00D371AF /* Build configuration list for PBXNativeTarget "GlucideCheck" */;
+			buildPhases = (
+				2ED7825B2BE52DCD00D371AF /* Sources */,
+				2ED7825C2BE52DCD00D371AF /* Frameworks */,
+				2ED7825D2BE52DCD00D371AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GlucideCheck;
+			productName = GlucideCheck;
+			productReference = 2ED7825F2BE52DCD00D371AF /* GlucideCheck.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2ED782572BE52DCD00D371AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					2ED7825E2BE52DCD00D371AF = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 2ED7825A2BE52DCD00D371AF /* Build configuration list for PBXProject "GlucideCheck" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2ED782562BE52DCD00D371AF;
+			productRefGroup = 2ED782602BE52DCD00D371AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2ED7825E2BE52DCD00D371AF /* GlucideCheck */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2ED7825D2BE52DCD00D371AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ED7826A2BE52DCF00D371AF /* Preview Assets.xcassets in Resources */,
+				2ED782672BE52DCF00D371AF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2ED7825B2BE52DCD00D371AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ED782742BE5396800D371AF /* DosageView.swift in Sources */,
+				2EFF3E1F2BE639AB00F0BF85 /* EditLanguage.swift in Sources */,
+				2EFF3E1D2BE6399500F0BF85 /* EditDarkMode.swift in Sources */,
+				2EFF3E192BE6397100F0BF85 /* EditInsulinInfluence.swift in Sources */,
+				2EFF3E132BE6394000F0BF85 /* EditWeight.swift in Sources */,
+				2EFF3E1B2BE6398400F0BF85 /* EditSugarInfluence.swift in Sources */,
+				2ED782652BE52DCD00D371AF /* ContentView.swift in Sources */,
+				2EFF3E112BE638E500F0BF85 /* EditBirthDate.swift in Sources */,
+				2E54DA792BE542E200AAD617 /* EditName.swift in Sources */,
+				2EFF3E152BE6395000F0BF85 /* EditGender.swift in Sources */,
+				2ED782782BE5398800D371AF /* SettingView.swift in Sources */,
+				2ED782762BE5397E00D371AF /* CalculView.swift in Sources */,
+				2EFF3E172BE6395D00F0BF85 /* EditTarget.swift in Sources */,
+				2ED782632BE52DCD00D371AF /* GlucideCheckApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2ED7826B2BE52DCF00D371AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2ED7826C2BE52DCF00D371AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2ED7826E2BE52DCF00D371AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucideCheck/Preview Content\"";
+				DEVELOPMENT_TEAM = 9J6RGS833X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pro.mondon.GlucideCheck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2ED7826F2BE52DCF00D371AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucideCheck/Preview Content\"";
+				DEVELOPMENT_TEAM = 9J6RGS833X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pro.mondon.GlucideCheck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2ED7825A2BE52DCD00D371AF /* Build configuration list for PBXProject "GlucideCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ED7826B2BE52DCF00D371AF /* Debug */,
+				2ED7826C2BE52DCF00D371AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2ED7826D2BE52DCF00D371AF /* Build configuration list for PBXNativeTarget "GlucideCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ED7826E2BE52DCF00D371AF /* Debug */,
+				2ED7826F2BE52DCF00D371AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2ED782572BE52DCD00D371AF /* Project object */;
+}

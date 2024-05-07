@@ -26,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E5418332BEA28A100F37122 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2E54DA782BE542E200AAD617 /* EditName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName.swift; sourceTree = "<group>"; };
 		2ED7825F2BE52DCD00D371AF /* GlucideCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucideCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED782622BE52DCD00D371AF /* GlucideCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucideCheckApp.swift; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		2ED782562BE52DCD00D371AF = {
 			isa = PBXGroup;
 			children = (
+				2E5418332BEA28A100F37122 /* README.md */,
 				2ED782612BE52DCD00D371AF /* GlucideCheck */,
 				2ED782602BE52DCD00D371AF /* Products */,
 			);

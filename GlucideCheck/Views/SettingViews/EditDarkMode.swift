@@ -43,4 +43,5 @@ struct EditDarkMode: View {
 
 #Preview {
     EditDarkMode()
+        .environmentObject(UserSettings())
 }

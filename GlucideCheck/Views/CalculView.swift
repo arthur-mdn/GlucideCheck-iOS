@@ -11,7 +11,7 @@ struct CalculView: View {
     enum FocusedField {
         case num1, num2, num3, num4
     }
-    
+    @EnvironmentObject var userSettings: UserSettings
     @State private var number1 = "100"
     @State private var number2 = ""
     @State private var number3 = ""
@@ -89,6 +89,13 @@ struct CalculView: View {
                 InfoView(showingInfo: $showingInfo)
             }
         }
+        .onAppear {
+            if userSettings.autoOpenKeyboardOnCalculs {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    focusedField = .num2
+                }
+            }
+        }
     }
     
     func updateNumber4() {
@@ -152,4 +159,5 @@ struct InfoView: View {
 
 #Preview {
     CalculView()
+        .environmentObject(UserSettings())
 }

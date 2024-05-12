@@ -45,6 +45,9 @@ struct SettingView: View {
                     NavigationLink(destination: EditLanguage()) {
                         Label("Langue", systemImage: "flag")
                     }
+                    NavigationLink(destination: EditAdvancedSettings()) {
+                        Label("Configuration Avancée", systemImage: "gear")
+                    }
                 }
             }
             .navigationTitle("Paramètres")

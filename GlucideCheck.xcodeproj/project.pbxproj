@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E54DA792BE542E200AAD617 /* EditName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E54DA782BE542E200AAD617 /* EditName.swift */; };
+		2EAA2A8F2BF13BF500D581D7 /* EditAdvancedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2A8E2BF13BF500D581D7 /* EditAdvancedSettings.swift */; };
 		2ED782632BE52DCD00D371AF /* GlucideCheckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782622BE52DCD00D371AF /* GlucideCheckApp.swift */; };
 		2ED782652BE52DCD00D371AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED782642BE52DCD00D371AF /* ContentView.swift */; };
 		2ED782672BE52DCF00D371AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED782662BE52DCF00D371AF /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		2E5418332BEA28A100F37122 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2E54DA782BE542E200AAD617 /* EditName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName.swift; sourceTree = "<group>"; };
+		2EAA2A8E2BF13BF500D581D7 /* EditAdvancedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAdvancedSettings.swift; sourceTree = "<group>"; };
 		2ED7825F2BE52DCD00D371AF /* GlucideCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucideCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED782622BE52DCD00D371AF /* GlucideCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucideCheckApp.swift; sourceTree = "<group>"; };
 		2ED782642BE52DCD00D371AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				2EFF3E1A2BE6398400F0BF85 /* EditSugarInfluence.swift */,
 				2EFF3E1C2BE6399500F0BF85 /* EditDarkMode.swift */,
 				2EFF3E1E2BE639AB00F0BF85 /* EditLanguage.swift */,
+				2EAA2A8E2BF13BF500D581D7 /* EditAdvancedSettings.swift */,
 			);
 			path = SettingViews;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				2EFF3E132BE6394000F0BF85 /* EditWeight.swift in Sources */,
 				2EFF3E1B2BE6398400F0BF85 /* EditSugarInfluence.swift in Sources */,
 				2ED782652BE52DCD00D371AF /* ContentView.swift in Sources */,
+				2EAA2A8F2BF13BF500D581D7 /* EditAdvancedSettings.swift in Sources */,
 				2EFF3E112BE638E500F0BF85 /* EditBirthDate.swift in Sources */,
 				2E54DA792BE542E200AAD617 /* EditName.swift in Sources */,
 				2EFF3E152BE6395000F0BF85 /* EditGender.swift in Sources */,

@@ -73,9 +73,13 @@ struct DosageView: View {
                 InfoGlycemieView(showingInfoGlycemie: $showingInfoGlycemie)
             }
         }
-        
-        
-        
+        .onAppear {
+            if userSettings.autoOpenKeyboardOnDosage {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    focusedField = .taux
+                }
+            }
+        }
     }
     
     func calculateGlycemicAction() {

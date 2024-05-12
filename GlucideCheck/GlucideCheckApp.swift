@@ -34,4 +34,6 @@ class UserSettings: ObservableObject {
     @AppStorage("sugarInfluence") var sugarInfluence: Double = 15.0
     @AppStorage("darkMode") var darkMode: Int = 0
     @AppStorage("language") var language: String = "fr"
+    @AppStorage("autoOpenKeyboardOnDosage") var autoOpenKeyboardOnDosage: Bool = false
+    @AppStorage("autoOpenKeyboardOnCalculs") var autoOpenKeyboardOnCalculs: Bool = false
 }

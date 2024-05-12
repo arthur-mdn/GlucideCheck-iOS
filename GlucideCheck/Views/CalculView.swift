@@ -11,6 +11,7 @@ struct CalculView: View {
     enum FocusedField {
         case num1, num2, num3, num4
     }
+    
     @State private var number1 = "100"
     @State private var number2 = ""
     @State private var number3 = ""
@@ -19,41 +20,38 @@ struct CalculView: View {
     @State private var showingInfo = false
     
     var body: some View {
-        NavigationStack{
-
-            VStack{
-                HStack{
+        NavigationStack {
+            VStack {
+                HStack {
                     TextField("100g", text: $number1)
                         .focused($focusedField, equals: .num1)
                         .keyboardType(.decimalPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: number1, initial: false) {
-                                                    updateNumber4()
-                                                }
+                        .onChange(of: number1, initial: false) { updateNumber4()
+                        }
                     
                     TextField("Glucides / " + number1 + "g", text: $number2)
                         .focused($focusedField, equals: .num2)
                         .keyboardType(.decimalPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onChange(of: number2, initial: false) {
-                                                    updateNumber4()
-                                                }
-                    
+                            updateNumber4()
+                        }
                 }
-                HStack{
+                
+                HStack {
                     TextField("? g", text: $number3)
                         .focused($focusedField, equals: .num3)
                         .keyboardType(.decimalPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onChange(of: number3, initial: false) {
-                                                    updateNumber4()
-                                                }
+                            updateNumber4()
+                        }
                     
                     TextField("Auto", text: $number4)
                         .focused($focusedField, equals: .num4)
                         .keyboardType(.decimalPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
                 }
                 
                 Button {
@@ -68,7 +66,7 @@ struct CalculView: View {
             }
             .padding()
             .navigationTitle("Calculs")
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showingInfo.toggle()
@@ -91,21 +89,29 @@ struct CalculView: View {
                 InfoView(showingInfo: $showingInfo)
             }
         }
-    
     }
+    
     func updateNumber4() {
         number4 = calculateCrossProduct(num1: number1, num2: number2, num3: number3)
     }
     
     func calculateCrossProduct(num1: String, num2: String, num3: String) -> String {
-        if let num1 = Double(num1), let num2 = Double(num2), let num3 = Double(num3) {
+        let locale = Locale.current
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2  // Ensure no more than two decimal places
+        
+        if let num1 = formatter.number(from: num1)?.doubleValue,
+           let num2 = formatter.number(from: num2)?.doubleValue,
+           let num3 = formatter.number(from: num3)?.doubleValue {
             let result = (num2 * num3) / num1
-            return String(format: "%.1f", result) + "g"
+            return formatter.string(from: NSNumber(value: result))! + "g"
         } else {
             return ""
         }
     }
-
+    
     func resetFields() {
         number1 = "100"
         number2 = ""

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CalculView: View {
-    enum FocusedField {
-        case num1, num2, num3, num4
+    enum FocusedField: Int, CaseIterable {
+        case num1, num2, num3
     }
     @EnvironmentObject var userSettings: UserSettings
     @State private var number1 = "100"
@@ -49,8 +49,8 @@ struct CalculView: View {
                         }
                     
                     TextField("Auto", text: $number4)
-                        .focused($focusedField, equals: .num4)
                         .keyboardType(.decimalPad)
+                        .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
@@ -77,10 +77,17 @@ struct CalculView: View {
                 ToolbarItem(placement: .keyboard) {
                     Spacer()
                 }
-                ToolbarItem(placement: .keyboard) {
-                    Button {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button(action: moveToPreviousField) {
+                        Image(systemName: "chevron.up")
+                    }
+                    Button(action: moveToNextField) {
+                        Image(systemName: "chevron.down")
+                    }
+                    Button(action: {
                         focusedField = nil
-                    } label: {
+                    }) {
                         Image(systemName: "keyboard.chevron.compact.down")
                     }
                 }
@@ -125,6 +132,24 @@ struct CalculView: View {
         number3 = ""
         number4 = ""
         focusedField = nil
+    }
+    
+    func moveToPreviousField() {
+        guard let currentField = focusedField,
+              let currentIndex = FocusedField.allCases.firstIndex(of: currentField),
+              currentIndex > 0 else { return }
+        
+        let previousIndex = FocusedField.allCases.index(before: currentIndex)
+        focusedField = FocusedField.allCases[previousIndex]
+    }
+        
+    func moveToNextField() {
+        guard let currentField = focusedField,
+              let currentIndex = FocusedField.allCases.firstIndex(of: currentField),
+              currentIndex < FocusedField.allCases.count - 1 else { return }
+        
+        let nextIndex = FocusedField.allCases.index(after: currentIndex)
+        focusedField = FocusedField.allCases[nextIndex]
     }
 }
 

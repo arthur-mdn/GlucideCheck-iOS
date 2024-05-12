@@ -78,6 +78,15 @@ struct CalculView: View {
                     Spacer()
                 }
                 ToolbarItemGroup(placement: .keyboard) {
+                    Button {
+                        resetFields()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            focusedField = .num2
+                        }
+                    } label: {
+                        Image(systemName: "arrow.circlepath")
+                    }
+                    Spacer()
                     Spacer()
                     Button(action: moveToPreviousField) {
                         Image(systemName: "chevron.up")

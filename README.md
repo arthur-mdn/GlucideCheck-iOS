@@ -1,24 +1,28 @@
 # Glucide-Check
-"Glucide-Check" is an iOS native application I developed in Swift, tailored to assist individuals with diabetes. This project marked my first foray into native mobile application development and was designed as a valuable tool for blood sugar management.
 
-## Features
-The application is divided into three main tabs, each offering essential functionalities for managing blood glucose levels:
+<p align="center">
+  <img src="docs/glucidecheck-thumbnail.webp" alt="Glucide-Check" width="480" />
+</p>
 
-### 1. Insulin Calculator
-The first tab allows users to input their current blood sugar level and calculate the number of insulin units required to reach an optimal glucose level. In the case of hypoglycemia, the app can also calculate the number of sugar cubes needed to raise blood sugar levels.
+Glucide-Check est une application iOS native développée en Swift pour aider les personnes diabétiques. Ce projet a été ma première expérience en développement mobile natif, conçue comme un outil pratique pour le suivi de la glycémie.
 
-### 2. Cross Multiplication Tool
-The second tab offers a "cross-multiplication" tool, useful for estimating the carbohydrate content in a portion of food. Users input the carbohydrate value per 100g and the amount they wish to eat, and the app calculates the total carbohydrates in the portion.
+## Fonctionnalités
+L'application est organisée en trois onglets principaux, chacun dédié à une fonction utile pour gérer la glycémie :
 
-### 3. Settings
-The third tab is for configuration. Here, users can enter personal information such as their first name, date of birth, gender, and weight. This allowed me to practice inputting different types of data. Users can also set custom parameters, such as insulin influence on blood sugar, the effect of a sugar cube, and the desired blood glucose target (minimum and maximum levels). Additionally, the app offers customization options for dark mode (light, dark, or following the system setting) and allows changing the app's language.
+### 1. Calculateur d'insuline
+Le premier onglet permet de saisir la glycémie actuelle et de calculer le nombre d'unités d'insuline nécessaires pour atteindre un taux optimal. En cas d'hypoglycémie, l'application estime aussi le nombre de carrés de sucre à prendre pour remonter la glycémie.
 
-## Development Highlights
-"Glucide-Check" showcases my growing expertise in native mobile application development, demonstrating my ability to create digital solutions that are both functional and useful. This project provided an excellent opportunity to explore native iOS features and to further familiarize myself with mobile development in Swift.
+### 2. Calcul en croix
+Le deuxième onglet propose un outil de calcul en croix pour estimer les glucides d'une portion. On indique les glucides pour 100 g (ou une autre référence) et la quantité consommée, puis l'application calcule les glucides de la portion.
 
-## Technologies Used
+### 3. Paramètres
+Le troisième onglet sert à la configuration. On peut y renseigner des informations personnelles (prénom, date de naissance, genre, poids) et définir des paramètres médicaux personnalisés : influence de l'insuline, effet d'un carré de sucre, et cible de glycémie (minimum et maximum). L'application propose aussi le choix du mode sombre (clair, sombre ou système) et le changement de langue.
+
+## Points forts du développement
+Glucide-Check illustre mon apprentissage du développement mobile natif et ma capacité à concevoir une solution concrète et utile. Ce projet m'a permis d'explorer les fonctionnalités iOS et de progresser avec Swift.
+
+## Technologies utilisées
 - Swift
 - Xcode
 - UIKit / SwiftUI
 - Core Data
-

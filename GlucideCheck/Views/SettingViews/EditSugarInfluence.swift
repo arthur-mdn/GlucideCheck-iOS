@@ -24,11 +24,11 @@ struct EditSugarInfluence: View {
                     .foregroundColor(.red)
             }
             Button("Enregistrer") {
-                if sugarInfluence >= 5 && sugarInfluence <= 40 {
+                if sugarInfluence >= 5 && sugarInfluence <= 100 {
                     userSettings.sugarInfluence = sugarInfluence
                     presentationMode.wrappedValue.dismiss()
                 } else {
-                    errorMessage = "La valeur doit être comprise entre 5 et 40. La valeur par défaut est 15."
+                    errorMessage = "La valeur doit être comprise entre 5 et 100. La valeur par défaut est 15."
                 }
             }
         }

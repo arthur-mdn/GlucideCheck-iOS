@@ -24,11 +24,11 @@ struct EditInsulinInfluence: View {
                     .foregroundColor(.red)
             }
             Button("Enregistrer") {
-                if insulinInfluence >= 20 && insulinInfluence <= 60 {
+                if insulinInfluence >= 20 && insulinInfluence <= 200 {
                     userSettings.insulinInfluence = insulinInfluence
                     presentationMode.wrappedValue.dismiss()
                 } else {
-                    errorMessage = "La valeur doit être comprise entre 20 et 60. La valeur par défaut est 30."
+                    errorMessage = "La valeur doit être comprise entre 20 et 200. La valeur par défaut est 40."
                 }
             }
         }

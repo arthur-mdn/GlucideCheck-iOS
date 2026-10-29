@@ -30,10 +30,10 @@ struct EditTarget: View {
                             .foregroundColor(.red)
                     }
                 Button("Enregistrer") {
-                    if targetMin < 70 || targetMin > 130 {
-                        errorMessage = "Le taux minimal doit être entre 70 et 130."
-                    } else if targetMax < 120 || targetMax > 200 {
-                        errorMessage = "Le taux maximal doit être entre 120 et 200."
+                    if targetMin < 60 || targetMin > 140 {
+                        errorMessage = "Le taux minimal doit être entre 60 et 140."
+                    } else if targetMax < 100 || targetMax > 220 {
+                        errorMessage = "Le taux maximal doit être entre 100 et 220."
                     } else if targetMax <= targetMin {
                         errorMessage = "Le taux maximal doit être supérieur au taux minimal."
                     } else if targetMax - targetMin < Int(userSettings.insulinInfluence) {

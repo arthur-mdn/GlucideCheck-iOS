@@ -106,8 +106,8 @@ struct CalculView: View {
             }
         }
         .onAppear {
-            if userSettings.autoOpenKeyboardOnCalculs {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if userSettings.autoOpenKeyboardOnCalculs {
                     focusedField = .num2
                 }
             }

@@ -19,6 +19,7 @@ struct GlucideCheckApp: App {
     }
 }
 
+@MainActor
 class UserSettings: ObservableObject {
     @AppStorage("firstName") var firstName: String = ""
     @AppStorage("storedBirthDate") var storedBirthDate = Date.now.timeIntervalSinceReferenceDate

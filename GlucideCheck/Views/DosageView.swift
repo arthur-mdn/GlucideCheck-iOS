@@ -20,37 +20,73 @@ struct DosageView: View {
     @State private var resultColor = Color.black
     
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Calculez rapidement votre dosage")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Section(header: Text("Glycémie actuelle")) {
-                    TextField("123 mg / dL", text: $taux)
-                        .focused($focusedField, equals: .taux)
-                        .keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: taux, initial: false) {
-                            calculateGlycemicAction()
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("Glycémie actuelle")
+                            .font(.subheadline)
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        Text("mg/dL")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    HStack(spacing: 8) {
+                        TextField("123", text: $taux)
+                            .focused($focusedField, equals: .taux)
+                            .keyboardType(.decimalPad)
+                            .font(.title2)
+                        
+                        if !taux.isEmpty {
+                            Button {
+                                taux = ""
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.title3)
+                                    .foregroundStyle(.tertiary)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Effacer")
                         }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 14)
+                    .background(Color(.secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .onChange(of: taux, initial: false) {
+                        calculateGlycemicAction()
+                    }
                 }
+                .padding(16)
+                .background(Color(.systemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                
+                if !resultTitle.isEmpty && !resultText.isEmpty {
+                    VStack(spacing: 8) {
+                        Text(resultTitle)
+                            .font(.headline)
+                            .foregroundStyle(resultColor)
+                        Text(resultText)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                }
+                
+                Spacer()
             }
             .padding()
-            
-            if !resultTitle.isEmpty && !resultText.isEmpty {
-                VStack {
-                    Text(resultTitle)
-                        .font(.headline)
-                        .foregroundColor(resultColor)
-                    Text(resultText)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                }
-                .padding()
-            }
-            Spacer()
-            
-            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background(Color(.systemGroupedBackground))
             .navigationTitle("Glycémie")
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showingInfoGlycemie.toggle()

@@ -15,9 +15,16 @@ struct DosageView: View {
     @State private var taux = ""
     @FocusState private var focusedField: FocusedField?
     @State private var showingInfoGlycemie = false
-    @State private var resultText = ""
     @State private var resultTitle = ""
-    @State private var resultColor = Color.black
+    @State private var resultDetail = ""
+    @State private var resultColor = Color.green
+    @State private var resultIcon = "checkmark.circle.fill"
+    @State private var resultValue: Int?
+    @State private var resultValueLabel = ""
+    
+    private var hasResult: Bool {
+        !resultTitle.isEmpty
+    }
     
     var body: some View {
         NavigationStack {
@@ -77,16 +84,8 @@ struct DosageView: View {
                 .background(Color(.systemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 
-                if !resultTitle.isEmpty && !resultText.isEmpty {
-                    VStack(spacing: 8) {
-                        Text(resultTitle)
-                            .font(.headline)
-                            .foregroundStyle(resultColor)
-                        Text(resultText)
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
+                if hasResult {
+                    resultCard
                 }
                 
                 Spacer()
@@ -127,20 +126,94 @@ struct DosageView: View {
         }
     }
     
+    private var resultCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 10) {
+                Image(systemName: resultIcon)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: 32, height: 32)
+                    .background(resultColor)
+                    .clipShape(Circle())
+                
+                Text(resultTitle)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(resultColor)
+                
+                Spacer()
+            }
+            
+            if let resultValue {
+                Text("\(resultValue)")
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .foregroundStyle(resultColor)
+                    .contentTransition(.numericText())
+                
+                if !resultValueLabel.isEmpty {
+                    Text(resultValueLabel)
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.primary)
+                }
+            }
+            
+            if !resultDetail.isEmpty {
+                Text(resultDetail)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(resultColor.opacity(0.25), lineWidth: 1)
+        }
+    }
+    
+    private func clearResult() {
+        resultTitle = ""
+        resultDetail = ""
+        resultValue = nil
+        resultValueLabel = ""
+        resultIcon = "checkmark.circle.fill"
+        resultColor = .green
+    }
+    
+    private func setResult(
+        title: String,
+        detail: String,
+        color: Color,
+        icon: String,
+        value: Int? = nil,
+        valueLabel: String = ""
+    ) {
+        resultTitle = title
+        resultDetail = detail
+        resultColor = color
+        resultIcon = icon
+        resultValue = value
+        resultValueLabel = valueLabel
+    }
+    
     func calculateGlycemicAction() {
         if taux.isEmpty {
-            resultTitle = ""
-            resultText = ""
-            resultColor = .black
+            clearResult()
             return
         }
         
         guard let tauxValue = Double(taux) else {
-            resultTitle = "Erreur de valeur"
-            resultText = "Veuillez entrer une valeur correcte !"
-            resultColor = .red
+            setResult(
+                title: "Erreur de valeur",
+                detail: "Veuillez entrer une valeur correcte.",
+                color: .red,
+                icon: "xmark.octagon.fill"
+            )
             return
         }
+        
         let targetMin = userSettings.targetMin
         let targetMax = userSettings.targetMax - 1
         let insulinInfluence = userSettings.insulinInfluence
@@ -148,35 +221,54 @@ struct DosageView: View {
         var nbr = 0
         
         if tauxValue > 700 || (tauxValue <= 30 && tauxValue > 0) {
-            resultTitle = "Alerte de glycémie incohérente"
-            resultText = "Un taux de \(Int(tauxValue)) semble être impossible !"
-            resultColor = .red
+            setResult(
+                title: "Glycémie incohérente",
+                detail: "Un taux de \(Int(tauxValue)) mg/dL semble impossible.",
+                color: .red,
+                icon: "exclamationmark.triangle.fill"
+            )
         } else if tauxValue <= 0 {
-            resultTitle = "Erreur de valeur"
-            resultText = "Veuillez entrer une valeur correcte !"
-            resultColor = .red
+            setResult(
+                title: "Erreur de valeur",
+                detail: "Veuillez entrer une valeur correcte.",
+                color: .red,
+                icon: "xmark.octagon.fill"
+            )
         } else if tauxValue > Double(targetMax) {
             var currentTaux = tauxValue
             while currentTaux > Double(targetMax) {
                 currentTaux -= insulinInfluence
                 nbr += 1
             }
-            resultTitle = "Hyperglycémie"
-            resultText = "Nombre d'unités à faire : \(nbr) pour atteindre un taux de \(Int(currentTaux))."
-            resultColor = oldValColor(oldVal: tauxValue)
+            setResult(
+                title: "Hyperglycémie",
+                detail: "Pour atteindre environ \(Int(currentTaux)) mg/dL",
+                color: oldValColor(oldVal: tauxValue),
+                icon: "arrow.up.circle.fill",
+                value: nbr,
+                valueLabel: nbr > 1 ? "unités d'insuline" : "unité d'insuline"
+            )
         } else if tauxValue < Double(targetMin) {
             var currentTaux = tauxValue
             while currentTaux < Double(targetMin) {
                 currentTaux += sugarInfluence
                 nbr += 1
             }
-            resultTitle = "Hypoglycémie"
-            resultText = "Nombre de sucres à prendre : \(nbr) pour atteindre un taux de \(Int(currentTaux))."
-            resultColor = .red
+            setResult(
+                title: "Hypoglycémie",
+                detail: "Pour atteindre environ \(Int(currentTaux)) mg/dL",
+                color: .red,
+                icon: "arrow.down.circle.fill",
+                value: nbr,
+                valueLabel: nbr > 1 ? "carrés de sucre" : "carré de sucre"
+            )
         } else {
-            resultTitle = "Taux optimal"
-            resultText = "Cible : Entre \(targetMin) et \(targetMax + 1)"
-            resultColor = .green
+            setResult(
+                title: "Taux optimal",
+                detail: "Cible : entre \(targetMin) et \(targetMax + 1) mg/dL",
+                color: .green,
+                icon: "checkmark.circle.fill"
+            )
         }
     }
     

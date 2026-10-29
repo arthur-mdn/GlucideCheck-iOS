@@ -28,11 +28,20 @@ struct DosageView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    HStack {
+                    HStack(spacing: 10) {
+                        Image(systemName: "drop.fill")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.white)
+                            .frame(width: 32, height: 32)
+                            .background(.red)
+                            .clipShape(Circle())
+                        
                         Text("Glycémie actuelle")
-                            .font(.subheadline)
+                            .font(.subheadline.weight(.medium))
                             .foregroundStyle(.primary)
+                        
                         Spacer()
+                        
                         Text("mg/dL")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)

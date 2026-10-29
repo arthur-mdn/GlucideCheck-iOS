@@ -9,62 +9,71 @@ import SwiftUI
 
 struct CalculView: View {
     enum FocusedField: Int, CaseIterable {
-        case num1, num2, num3
+        case carbsPer100, quantity
     }
+    
     @EnvironmentObject var userSettings: UserSettings
-    @State private var number1 = "100"
-    @State private var number2 = ""
-    @State private var number3 = ""
-    @State private var number4 = ""
+    @State private var carbsPer100 = ""
+    @State private var quantity = ""
     @FocusState private var focusedField: FocusedField?
     @State private var showingInfo = false
     
+    private var portionCarbsText: String {
+        calculatePortionCarbs(carbsPer100: carbsPer100, quantity: quantity)
+    }
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                HStack {
-                    TextField("100g", text: $number1)
-                        .focused($focusedField, equals: .num1)
-                        .keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: number1, initial: false) { updateNumber4()
-                        }
-                    
-                    TextField("Glucides / " + number1 + "g", text: $number2)
-                        .focused($focusedField, equals: .num2)
-                        .keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: number2, initial: false) {
-                            updateNumber4()
-                        }
-                }
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Calculez facilement le nombre de glucides dans vos portions")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                HStack {
-                    TextField("? g", text: $number3)
-                        .focused($focusedField, equals: .num3)
-                        .keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: number3, initial: false) {
-                            updateNumber4()
-                        }
-                    
-                    TextField("Auto", text: $number4)
-                        .keyboardType(.decimalPad)
-                        .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
+                inputCard(
+                    icon: "fork.knife",
+                    iconColor: .orange,
+                    title: "Glucides pour 100g",
+                    text: $carbsPer100,
+                    placeholder: "100",
+                    field: .carbsPer100
+                )
                 
-                Button {
-                    resetFields()
-                } label: {
-                    Image(systemName: "arrow.circlepath")
+                inputCard(
+                    icon: "scalemass.fill",
+                    iconColor: .blue,
+                    title: "Quantité consommée",
+                    text: $quantity,
+                    placeholder: "0",
+                    field: .quantity
+                )
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Glucides dans la portion")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    
+                    if portionCarbsText.isEmpty {
+                        Text("—")
+                            .font(.system(size: 40, weight: .bold, design: .rounded))
+                            .foregroundStyle(.green.opacity(0.35))
+                    } else {
+                        Text(portionCarbsText)
+                            .font(.system(size: 40, weight: .bold, design: .rounded))
+                            .foregroundStyle(.green)
+                            .contentTransition(.numericText())
+                    }
                 }
-                .buttonStyle(BorderedButtonStyle())
-                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
+                .background(Color(.systemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 
                 Spacer()
             }
             .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background(Color(.systemGroupedBackground))
             .navigationTitle("Calculs")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -74,19 +83,15 @@ struct CalculView: View {
                         Image(systemName: "info.circle")
                     }
                 }
-                ToolbarItem(placement: .keyboard) {
-                    Spacer()
-                }
                 ToolbarItemGroup(placement: .keyboard) {
                     Button {
                         resetFields()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            focusedField = .num2
+                            focusedField = .carbsPer100
                         }
                     } label: {
                         Image(systemName: "arrow.circlepath")
                     }
-                    Spacer()
                     Spacer()
                     Button(action: moveToPreviousField) {
                         Image(systemName: "chevron.up")
@@ -94,9 +99,9 @@ struct CalculView: View {
                     Button(action: moveToNextField) {
                         Image(systemName: "chevron.down")
                     }
-                    Button(action: {
+                    Button {
                         focusedField = nil
-                    }) {
+                    } label: {
                         Image(systemName: "keyboard.chevron.compact.down")
                     }
                 }
@@ -108,57 +113,106 @@ struct CalculView: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if userSettings.autoOpenKeyboardOnCalculs {
-                    focusedField = .num2
+                    focusedField = .carbsPer100
                 }
             }
         }
     }
     
-    func updateNumber4() {
-        number4 = calculateCrossProduct(num1: number1, num2: number2, num3: number3)
+    @ViewBuilder
+    private func inputCard(
+        icon: String,
+        iconColor: Color,
+        title: String,
+        text: Binding<String>,
+        placeholder: String,
+        field: FocusedField
+    ) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 10) {
+                Image(systemName: icon)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: 32, height: 32)
+                    .background(iconColor)
+                    .clipShape(Circle())
+                
+                Text(title)
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.primary)
+                
+                Spacer()
+                
+                Text("g")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            
+            HStack(spacing: 8) {
+                TextField(placeholder, text: text)
+                    .focused($focusedField, equals: field)
+                    .keyboardType(.decimalPad)
+                    .font(.title2)
+                
+                if !text.wrappedValue.isEmpty {
+                    Button {
+                        text.wrappedValue = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title3)
+                            .foregroundStyle(.tertiary)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Effacer")
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 14)
+            .background(Color(.secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        }
+        .padding(16)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
     
-    func calculateCrossProduct(num1: String, num2: String, num3: String) -> String {
-        let locale = Locale.current
+    private func calculatePortionCarbs(carbsPer100: String, quantity: String) -> String {
         let formatter = NumberFormatter()
-        formatter.locale = locale
+        formatter.locale = Locale.current
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2  // Ensure no more than two decimal places
+        formatter.maximumFractionDigits = 2
         
-        if let num1 = formatter.number(from: num1)?.doubleValue,
-           let num2 = formatter.number(from: num2)?.doubleValue,
-           let num3 = formatter.number(from: num3)?.doubleValue {
-            let result = (num2 * num3) / num1
-            return formatter.string(from: NSNumber(value: result))! + "g"
-        } else {
+        guard let carbs = formatter.number(from: carbsPer100)?.doubleValue,
+              let qty = formatter.number(from: quantity)?.doubleValue,
+              qty >= 0 else {
             return ""
         }
+        
+        let result = (carbs * qty) / 100
+        guard let formatted = formatter.string(from: NSNumber(value: result)) else {
+            return ""
+        }
+        return "\(formatted) g"
     }
     
-    func resetFields() {
-        number1 = "100"
-        number2 = ""
-        number3 = ""
-        number4 = ""
+    private func resetFields() {
+        carbsPer100 = ""
+        quantity = ""
         focusedField = nil
     }
     
-    func moveToPreviousField() {
+    private func moveToPreviousField() {
         guard let currentField = focusedField,
               let currentIndex = FocusedField.allCases.firstIndex(of: currentField),
               currentIndex > 0 else { return }
-        
-        let previousIndex = FocusedField.allCases.index(before: currentIndex)
-        focusedField = FocusedField.allCases[previousIndex]
+        focusedField = FocusedField.allCases[FocusedField.allCases.index(before: currentIndex)]
     }
-        
-    func moveToNextField() {
+    
+    private func moveToNextField() {
         guard let currentField = focusedField,
               let currentIndex = FocusedField.allCases.firstIndex(of: currentField),
               currentIndex < FocusedField.allCases.count - 1 else { return }
-        
-        let nextIndex = FocusedField.allCases.index(after: currentIndex)
-        focusedField = FocusedField.allCases[nextIndex]
+        focusedField = FocusedField.allCases[FocusedField.allCases.index(after: currentIndex)]
     }
 }
 
@@ -173,8 +227,8 @@ struct InfoView: View {
                 .padding()
             
             Text("""
-                Le système de calcul en croix vous aide à déterminer la quantité de glucides dans un aliment donné, \
-                en utilisant le ratio de glucides pour 100g. Par défaut, le calcul est effectué pour 100g.
+                Indiquez les glucides pour 100g (valeur de l'emballage), puis la quantité consommée. \
+                Le calcul affiche automatiquement les glucides de votre portion.
                 """)
                 .padding()
             

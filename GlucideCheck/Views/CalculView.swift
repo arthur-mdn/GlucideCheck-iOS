@@ -9,17 +9,30 @@ import SwiftUI
 
 struct CalculView: View {
     enum FocusedField: Int, CaseIterable {
-        case carbsPer100, quantity
+        case carbsForReference, quantity
     }
     
+    private static let defaultReference = "100"
+    
     @EnvironmentObject var userSettings: UserSettings
-    @State private var carbsPer100 = ""
+    @State private var carbsForReference = ""
     @State private var quantity = ""
+    @State private var referenceGrams = Self.defaultReference
+    @State private var referenceDraft = Self.defaultReference
+    @State private var showingReferencePopover = false
     @FocusState private var focusedField: FocusedField?
     @State private var showingInfo = false
     
     private var portionCarbsText: String {
-        calculatePortionCarbs(carbsPer100: carbsPer100, quantity: quantity)
+        calculatePortionCarbs(
+            carbs: carbsForReference,
+            quantity: quantity,
+            reference: referenceGrams
+        )
+    }
+    
+    private var referenceDisplay: String {
+        formattedNumber(referenceGrams) ?? Self.defaultReference
     }
     
     var body: some View {
@@ -30,19 +43,13 @@ struct CalculView: View {
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                inputCard(
-                    icon: "fork.knife",
-                    iconColor: .orange,
-                    title: "Glucides pour 100g",
-                    text: $carbsPer100,
-                    placeholder: "100",
-                    field: .carbsPer100
-                )
+                carbsCard
                 
                 inputCard(
                     icon: "scalemass.fill",
                     iconColor: .blue,
-                    title: "Quantité consommée",
+                    title: Text("Quantité consommée")
+                        .font(.subheadline.weight(.medium)),
                     text: $quantity,
                     placeholder: "0",
                     field: .quantity
@@ -87,7 +94,7 @@ struct CalculView: View {
                     Button {
                         resetFields()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            focusedField = .carbsPer100
+                            focusedField = .carbsForReference
                         }
                     } label: {
                         Image(systemName: "arrow.circlepath")
@@ -113,17 +120,95 @@ struct CalculView: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if userSettings.autoOpenKeyboardOnCalculs {
-                    focusedField = .carbsPer100
+                    focusedField = .carbsForReference
                 }
             }
         }
     }
     
+    private var carbsCard: some View {
+        inputCard(
+            icon: "fork.knife",
+            iconColor: .orange,
+            title: carbsTitle,
+            text: $carbsForReference,
+            placeholder: "0",
+            field: .carbsForReference
+        )
+    }
+    
+    private var carbsTitle: some View {
+        HStack(spacing: 0) {
+            Text("Glucides pour ")
+                .font(.subheadline.weight(.medium))
+            
+            Button {
+                referenceDraft = referenceGrams
+                showingReferencePopover = true
+            } label: {
+                Text("\(referenceDisplay)g")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.orange)
+                    .underline()
+            }
+            .buttonStyle(.plain)
+            .popover(isPresented: $showingReferencePopover, arrowEdge: .bottom) {
+                referencePopover
+                    .presentationCompactAdaptation(.popover)
+            }
+            .accessibilityLabel("Modifier la référence \(referenceDisplay) grammes")
+        }
+    }
+    
+    private var referencePopover: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Référence")
+                .font(.headline)
+            
+            Text("Valeur de l'emballage (ex. pour 100g)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            
+            HStack(spacing: 8) {
+                TextField("100", text: $referenceDraft)
+                    .keyboardType(.decimalPad)
+                    .font(.title3)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .background(Color(.secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                
+                Text("g")
+                    .foregroundStyle(.secondary)
+            }
+            
+            HStack(spacing: 12) {
+                Button("Réinitialiser") {
+                    referenceDraft = Self.defaultReference
+                    referenceGrams = Self.defaultReference
+                    showingReferencePopover = false
+                }
+                .disabled(referenceGrams == Self.defaultReference && referenceDraft == Self.defaultReference)
+                
+                Spacer()
+                
+                Button("OK") {
+                    applyReferenceDraft()
+                }
+                .fontWeight(.semibold)
+                .disabled(!isValidReference(referenceDraft))
+            }
+            .buttonStyle(.bordered)
+        }
+        .padding()
+        .frame(minWidth: 260)
+    }
+    
     @ViewBuilder
-    private func inputCard(
+    private func inputCard<Title: View>(
         icon: String,
         iconColor: Color,
-        title: String,
+        title: Title,
         text: Binding<String>,
         placeholder: String,
         field: FocusedField
@@ -137,9 +222,7 @@ struct CalculView: View {
                     .background(iconColor)
                     .clipShape(Circle())
                 
-                Text(title)
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.primary)
+                title
                 
                 Spacer()
                 
@@ -176,19 +259,45 @@ struct CalculView: View {
         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
     
-    private func calculatePortionCarbs(carbsPer100: String, quantity: String) -> String {
+    private func applyReferenceDraft() {
+        guard isValidReference(referenceDraft),
+              let formatted = formattedNumber(referenceDraft) else { return }
+        referenceGrams = formatted
+        showingReferencePopover = false
+    }
+    
+    private func isValidReference(_ value: String) -> Bool {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .decimal
+        guard let number = formatter.number(from: value)?.doubleValue else { return false }
+        return number > 0
+    }
+    
+    private func formattedNumber(_ value: String) -> String? {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        guard let number = formatter.number(from: value) else { return nil }
+        return formatter.string(from: number)
+    }
+    
+    private func calculatePortionCarbs(carbs: String, quantity: String, reference: String) -> String {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         
-        guard let carbs = formatter.number(from: carbsPer100)?.doubleValue,
+        guard let carbsValue = formatter.number(from: carbs)?.doubleValue,
               let qty = formatter.number(from: quantity)?.doubleValue,
-              qty >= 0 else {
+              let referenceValue = formatter.number(from: reference)?.doubleValue,
+              qty >= 0,
+              referenceValue > 0 else {
             return ""
         }
         
-        let result = (carbs * qty) / 100
+        let result = (carbsValue * qty) / referenceValue
         guard let formatted = formatter.string(from: NSNumber(value: result)) else {
             return ""
         }
@@ -196,8 +305,10 @@ struct CalculView: View {
     }
     
     private func resetFields() {
-        carbsPer100 = ""
+        carbsForReference = ""
         quantity = ""
+        referenceGrams = Self.defaultReference
+        referenceDraft = Self.defaultReference
         focusedField = nil
     }
     
@@ -227,8 +338,8 @@ struct InfoView: View {
                 .padding()
             
             Text("""
-                Indiquez les glucides pour 100g (valeur de l'emballage), puis la quantité consommée. \
-                Le calcul affiche automatiquement les glucides de votre portion.
+                Indiquez les glucides pour la référence de l'emballage (100g par défaut, modifiable), \
+                puis la quantité consommée. Le calcul affiche automatiquement les glucides de votre portion.
                 """)
                 .padding()
             
